@@ -56,7 +56,9 @@ PNUMBER = 5
 # 오브젝트를 저장할 List
 OBJECTS = []
 
+# Object 클래스 생성
 class Object:
+    # Object_image에 이미지를 배열의 형태로 저장
     Object_image = ['Obj01.png', 'Obj02.png', 'Obj03.png', 'Obj04.png', 'Obj05.png', \
                     'Obj06.png', 'Obj07.png', 'Obj08.png', 'Obj09.png', 'Obj10.png', \
                     'Obj11.png', 'Obj12.png', 'Obj13.png', 'Obj14.png', 'Obj15.png', \
@@ -74,7 +76,8 @@ class Object:
         self.dx = dx
         self.dy = dy
         self.rect = ""
-
+    
+    # 이미지 로드(가져오기)
     def load_object(self, p=""):
 
         if p == "p":
@@ -84,7 +87,7 @@ class Object:
 
             # 크기 조정
             self.image = pygame.transform.scale(self.image, (150, 150))
-
+            
             self.rect = self.image.get_rect()
             self.rect.x = self.x
             self.rect.y = self.y
@@ -133,6 +136,7 @@ class Object:
 
     # 오브젝트를 스크린에 그리기
     def draw_object(self):
+        # 설정된 x축과 y축 위치에 이미지를 화면에 표시
         SCREEN.blit(self.image, [self.rect.x, self.rect.y])
 
     # x 좌표 이동 - 플레이어 캐릭터의 x축 움직임 제어할 때 필요
@@ -145,8 +149,10 @@ class Object:
 
     # 화면 밖으로 못 나가게 방지
     def check_screen(self):
+        #x축 밖으로 못 나가도록 설정
         if self.rect.right > WINDOW_WIDTH or self.rect.x < 0:
             self.rect.x -= self.dx
+        #y축 밖으로 못 나가도록 설정 
         if self.rect.bottom > WINDOW_HEIGHT or self.rect.y < 0:
             self.rect.y -= self.dy
 
