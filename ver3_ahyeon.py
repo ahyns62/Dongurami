@@ -380,12 +380,13 @@ def main():
 
                     pygame.display.update()
 
-            # 상대 오브젝트들끼리 충돌 감지, 각 물체들을 순서대로 서로 비교
+            # 오브젝트들끼리 충돌 감지
+            # 각 오브젝트들을 순서대로 비교
             for i in range(obj_COUNT):
                 for j in range(i + 1, obj_COUNT):
-                    # 충돌 후 서로 튕겨 나가게 함.
+                    # 충돌 후 각 오브젝트들을 튕겨 나가게 함
                     if OBJECTS[i].check_collision(OBJECTS[j]):
-                        # 왼쪽에 있는 물체는 왼쪽으로 오른쪽 물체는 오른쪽으로 튕김(x축)
+                        # 왼쪽 오브젝트는 왼쪽으로, 오른쪽 오브젝트는 오른쪽으로 튕김(x축 방향)
                         if OBJECTS[i].rect.x > OBJECTS[j].rect.x:
                             OBJECTS[i].rect.x += 4
                             OBJECTS[j].rect.x -= 4
@@ -393,14 +394,15 @@ def main():
                             OBJECTS[i].rect.x -= 4
                             OBJECTS[j].rect.x += 4
 
-                        # 위쪽 물체는 위로, 아래쪽 물체는 아래로 튕김(y축)
+                        # 위쪽 오브젝트는 위쪽으로, 아래쪽 오브젝트는 아래쪽으로 튕김(y축 방향)
                         if OBJECTS[i].rect.y > OBJECTS[j].rect.y:
                             OBJECTS[i].rect.y += OBJECTS[i].dy
                             OBJECTS[j].rect.y -= OBJECTS[j].dy
                         else:
                             OBJECTS[i].rect.y -= OBJECTS[i].dy
                             OBJECTS[j].rect.y += OBJECTS[j].dy
-
+                            
+                            
             if PNUMBER == 0:
                 idx = 4
                 tmr = 0
